@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Adding a HAproxy setup and configuration on lb-01 server
-sudo apt-get update -y
+sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install haproxy -y
 
