@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 # Adding a HAproxy setup and configuration on lb-01 server
-
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install haproxy -y
 
 # HAproxy for web servers
-new_string="504.http\n\nfronted web-fronted\n\tbind *:80\n\tmode http\n\tdefault_backend web-backend\n\nbackend web-backend\n\tbalance roundrobin\n\tserver 4297-web-01 54.89.191.220 check\n\tserver 4297-web-02 23.20.55.144 check\n"
+new_string="504.http\n\nfronted web-fronted\n\tbind *:80\n\tmode http\n\tdefault_backend web-backend\n\nbackend web-backend\n\tbalance roundrobin\n\tserver 4297-web-01 54.89.191.220:80 check\n\tserver 4297-web-02 23.20.55.144:80 check\n"
 
 sudo sed -i "s/504.http/$new_string/" /etc/haproxy/haproxy.cfg
 
