@@ -2,4 +2,4 @@
 # Install nginx web server and place it on port 80
 sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
 sudo service nginx restart
-
+sudo pkill -o nginx
