@@ -14,14 +14,14 @@ if response.status_code == 200 and response2.status_code == 200:
     data2 = response2.json()
 
     number = int(argv[1])
-    text = "Employee {} is done with tasks".format(data[number]["name"])
+    text = "Employee {} is done with tasks".format(data[number - 1]["name"])
     count = 0
     count2 = 0
     lens = len(data2)
     for x in range(lens):
         if int(data2[x]["userId"]) == number:
             count2 += 1
-    
+
     for i in range(lens):
         if data2[i]["userId"] == number and data2[i]["completed"] is True:
             count += 1
