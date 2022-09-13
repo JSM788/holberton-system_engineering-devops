@@ -4,29 +4,30 @@ employee ID, returns information about his/her TODO list progress."""
 import requests
 from sys import argv
 
-url = "https://jsonplaceholder.typicode.com/users"
-url2 = "https://jsonplaceholder.typicode.com/todos"
-response = requests.get(url)
-response2 = requests.get(url2)
+if __name__ == "__main__":
+    url = "https://jsonplaceholder.typicode.com/users"
+    url2 = "https://jsonplaceholder.typicode.com/todos"
+    response = requests.get(url)
+    response2 = requests.get(url2)
 
-if response.status_code == 200 and response2.status_code == 200:
-    data = response.json()
-    data2 = response2.json()
+    if response.status_code == 200 and response2.status_code == 200:
+        data = response.json()
+        data2 = response2.json()
 
-    number = int(argv[1])
-    text = "Employee {} is done with tasks".format(data[number - 1]["name"])
-    count = 0
-    count2 = 0
-    lens = len(data2)
-    for x in range(lens):
-        if int(data2[x]["userId"]) == number:
-            count2 += 1
+        number = int(argv[1])
+        text = "Employee {} is done with tasks".format(data[number - 1]["name"])
+        count = 0
+        count2 = 0
+        lens = len(data2)
+        for x in range(lens):
+            if int(data2[x]["userId"]) == number:
+                count2 += 1
 
-    for i in range(lens):
-        if data2[i]["userId"] == number and data2[i]["completed"] is True:
-            count += 1
-    print("{}({}/{}):".format(text, count, count2))
+        for i in range(lens):
+            if data2[i]["userId"] == number and data2[i]["completed"] is True:
+                count += 1
+        print("{}({}/{}):".format(text, count, count2))
 
-    for i in range(lens):
-        if data2[i]["userId"] == number and data2[i]["completed"] is True:
-            print("\t" + data2[i]["title"])
+        for i in range(lens):
+            if data2[i]["userId"] == number and data2[i]["completed"] is True:
+                print("\t" + data2[i]["title"])
