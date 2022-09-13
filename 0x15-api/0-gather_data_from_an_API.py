@@ -15,8 +15,7 @@ if __name__ == "__main__":
         data2 = response2.json()
 
         number = int(argv[1])
-        text = "Employee {} is done with tasks"
-        .format(data[number - 1]["name"])
+        txt = "Employee {} is done with tasks".format(data[number - 1]["name"])
         count = 0
         count2 = 0
         lens = len(data2)
@@ -27,7 +26,7 @@ if __name__ == "__main__":
         for i in range(lens):
             if data2[i]["userId"] == number and data2[i]["completed"] is True:
                 count += 1
-        print("{}({}/{}):".format(text, count, count2))
+        print("{}({}/{}):".format(txt, count, count2))
 
         for i in range(lens):
             if data2[i]["userId"] == number and data2[i]["completed"] is True:
