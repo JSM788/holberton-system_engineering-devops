@@ -15,7 +15,8 @@ if __name__ == "__main__":
         data2 = response2.json()
 
         number = int(argv[1])
-        text = "Employee {} is done with tasks".format(data[number - 1]["name"])
+        text = "Employee {} is done with tasks"
+        .format(data[number - 1]["name"])
         count = 0
         count2 = 0
         lens = len(data2)
