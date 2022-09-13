@@ -24,4 +24,4 @@ if __name__ == "__main__":
     dic = {str(arg): lis}
     f = "{}.json".format(arg)
     with open(f, 'w', encoding="utf-8") as file:
-        file.write(str(dic))
+        json.dump(dic, file)
