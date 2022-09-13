@@ -30,4 +30,4 @@ if __name__ == "__main__":
 
     for i in range(lens):
         if data2[i]["userId"] == number and data2[i]["completed"] is True:
-            print("\t" + data2[i]["title"])
+            print("\t " + data2[i]["title"])
