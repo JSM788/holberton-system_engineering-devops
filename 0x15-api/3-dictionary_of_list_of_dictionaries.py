@@ -1,30 +1,38 @@
 #!/usr/bin/python3
-"""Using what you did in the task #0, extend your Python script
-to export data in the CSV format."""
+"""
+Python script that, using this REST API,
+for a given employee ID, returns information about
+his/her TODO list progress
+"""
 import json
 import requests
 
+
 if __name__ == "__main__":
+
     url = "https://jsonplaceholder.typicode.com/"
-    all_users = requests.get("{}users/".format(url))
-    final_dict = {}
+    users = requests.get('{}users/'.format(url))
+    dict_result = {}
 
-    for id_user in range(1, len(all_users.json()) + 1):
-        user = requests.get("{}users/{}".format(url, id_user))
-        todo = requests.get("{}users/{}/todos".format(url, id_user))
+    for id_user in range(1, len(users.json()) + 1):
+        user = requests.get('{}users/{}'.format(url, id_user))
 
-        name = user.json()["username"]
+        todo = requests.get('{}todos?userId={}'.format(url, id_user))
 
-        lis = []
-        dic = {}
-        for index in todo.json():
-            dic = {"username": name,
-                   "task": index["title"],
-                   "completed": index["completed"]
-                   }
-            lis.append(dic)
-        final_dict[id_user] = lis
+        USERNAME = user.json().get("username")
+        TOTAL_NUMBER_OF_TASKS = len(todo.json())
+        list_task = []
+        dict_task = {}
 
-    f = "todo_all_employees.json"
-    with open(f, 'w', encoding="utf-8") as file:
-        json.dump(final_dict, file)
+        for i in range(TOTAL_NUMBER_OF_TASKS):
+            dict_task = {"username": USERNAME,
+                         "task": todo.json()[i].get("title"),
+                         "completed": todo.json()[i].get("completed")}
+
+            list_task.append(dict_task)
+
+        dict_result[id_user] = list_task
+
+    filename = "todo_all_employees.json"
+    with open(filename, mode="w", encoding="utf-8")as myFile:
+        json.dump(dict_result, myFile)
