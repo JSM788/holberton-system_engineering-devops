@@ -1,5 +1,5 @@
-# Fixing sevidor with Error
+# Nginx sevidor with Error
 exec {'Error':
-        command  => 'sed -i "s/ULIMIT="-n 15"/ULIMIT="-n 15000"/g" /etc/default/nginx',
+        command  => 'sed -i "s/15/1500/g" /etc/default/nginx; sudo service nginx restart',
         provider => shell,
 }
